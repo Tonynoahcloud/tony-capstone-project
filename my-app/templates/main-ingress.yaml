@@ -1,0 +1,49 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: combined-ingress
+  namespace: sock-shop
+  annotations:
+    cert-manager.io/Clusterissuer: letsencrypt-prod
+    # kubernetes.io/ingress.class: nginx
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: tonynoah.me
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: front-end
+                port:
+                  number: 80
+    - host: prometheus.tonynoah.me
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: prometheus-operated 
+                port:
+                  number: 9090
+    - host: grafana.tonynoah.me
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: prome-grafana
+                port:
+                  number: 80
+    
+  tls:
+    - hosts:
+      - tonynoah.me
+      secretName: tony-secret
+
+
+
