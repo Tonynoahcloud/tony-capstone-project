@@ -27,3 +27,28 @@ variable "username" {
   description = "The admin username for the new cluster."
   default     = "azureadmin"
 }
+
+
+variable "client_id" {
+  type = string
+  default = null
+  
+}
+
+variable "client_secret" {
+  type = string
+  default = null
+  
+}
+
+variable "tenant_id" {
+  type = string
+  default = null
+  
+}
+
+variable "subscription_id" {
+  type = string
+  default = null
+  
+}
