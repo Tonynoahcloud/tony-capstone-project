@@ -46,14 +46,7 @@ resource "azurerm_kubernetes_cluster" "k8s" {
 
 }
 
-terraform {
-  backend "azurerm" {
-    resource_group_name   = "samuel-rg"
-    storage_account_name  = "munachimso"
-    container_name        = "tfstate"
-    key                   = "terraform.tfstate"  
-  }
-}
+
 
 
 
