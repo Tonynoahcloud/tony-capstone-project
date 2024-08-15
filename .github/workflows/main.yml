@@ -6,6 +6,7 @@ name: Deploy to AKS
       - main
     paths:
       - terraform/**
+      - my-app/**
 jobs:
   terraform:
     runs-on: ubuntu-latest
@@ -39,8 +40,8 @@ jobs:
           version: 1.26.0
       - name: Configure kubectl
         run: >
-          az aks get-credentials --resource-group <your-resource-group> --name
-          <your-cluster-name>
+          az aks get-credentials --resource-group samuel-rg --name
+          munachimso
         env:
           AZURE_CREDENTIALS: '${{ secrets.AZURE_CREDENTIALS }}'
       - name: Apply Kubernetes Manifests
@@ -48,7 +49,7 @@ jobs:
           kubectl apply -f my-app/templates/
       - name: Verify Deployment
         run: |
-          kubectl rollout status deployment/my-app
+          kubectl rollout status tony-capstone-project/my-app
       - name: Apply Prometheus and Grafana
         run: >
           helm repo add prometheus-community
